@@ -1,0 +1,86 @@
+.profileScreen {
+    height: 80vh;
+    color: black;
+}
+.profileScreen_body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 8%;
+    max-width: 800px;
+}
+.profileScreen_body > h1 {
+    font-size: 60px;
+    font-weight:400 ;
+    border-bottom: 1px solid #282c2d;
+    margin-bottom: 20px;
+}
+.profileScreen_body-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid #282c2d;
+    margin-bottom: 20px;
+}
+.profileScreen_body-main > h1 {
+    font-size: 60px;
+    font-weight:400 ;
+   
+}
+.profileScreen_info{
+    display: flex;
+}
+.profileScreen_details {
+    color: rgb(3, 2, 2);
+    margin-left: 25px;
+    flex: 1;
+}
+.profileScreen_details > h2 {
+    background-color: gray;
+    padding: 15px;
+    font-size: 15px;
+    padding-left: 20px;
+}
+.profileScreen_signOut {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 5%;
+    width: 100%;
+    color: white;
+    background-color: #e50914;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+.profile_plans {
+    margin-top: 20px;
+}
+.profile_plans > h2 {
+    border-bottom:  1px solid #282c2d;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.profileScreen_info > img {
+    height: 100px;
+}
+.Plans_details{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.details-btn > button{
+    background-color: #e50914;
+    border: none;
+    font-size: 15px;
+    color: aliceblue;
+    font-weight: 7  00;
+    padding: 13px 20px;
+}
+:where(.css-dev-only-do-not-override-1xg9z9n).ant-upload-wrapper.ant-upload-picture-card-wrapper, :where(.css-dev-only-do-not-override-1xg9z9n).ant-upload-wrapper.ant-upload-picture-circle-wrapper{
+    width: auto;
+}

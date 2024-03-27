@@ -1,0 +1,66 @@
+/* .moment-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.moment-heading{
+    margin-bottom: 20px;
+}
+.moment-heading > h1 {
+    font-size: 50px;
+    font-weight: 300;
+}
+.moment-content > p{
+    font-size: 20px;
+    font-weight: 300;
+    color: gray;
+}
+.moment-btn{
+    margin-top: 20px;
+}
+.moment-btn > button{
+    font-size: 19px;
+    border: none;
+    background: none;
+    padding: 0px 20px 10px 0px;
+    border-bottom: 4px solid aqua;
+}
+.moment-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    margin-top: 30px;
+}
+.moment-img > img {
+    width: 120px;
+    object-fit: contain;
+}
+.card-container{
+    margin-top: 40px;
+}
+.card-box {
+    width: 100%;
+    padding: 40px 50px;
+    border: none !important;
+    box-shadow: 0px 3px 11px -3px rgba(0,0,0,0.75);
+    border-radius: 25px  !important;
+}
+.margin-top{
+    margin-bottom: 20px !important;
+}
+.card-heading > h1 {
+    color: rgb(1, 181, 181);
+    font-size: 30px;
+}
+.card-heading > h2 {
+    font-size: 27px;
+    font-weight: 300;
+}
+.card-main{
+    margin-top: 20px;
+}
+.card-heading > p{
+    font-size: 18px;
+    color: gray;
+}

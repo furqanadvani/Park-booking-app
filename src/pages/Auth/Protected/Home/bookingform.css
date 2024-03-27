@@ -1,0 +1,36 @@
+/* .park-booking-body-img > img{
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+} */
+.park-booking-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.park-booking-title > h1{
+    font-size: 40px;
+    font-weight: 700;
+    color: gray;
+}
+/* .park-booking-body{
+    background-color: rgb(4, 170, 154);
+} */
+.park-booking-container{
+    background-color: white;
+}
+.booking-form{
+    padding-inline: 25px;
+    padding-block: 35px;
+}
+.booking-inp > input{
+    /* font-size: 0px; */
+    padding: 14px;
+}
+.inpt-margin{
+    margin-block: 6px;
+}
+.booking-btn {
+    margin-top: 10px;
+}

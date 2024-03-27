@@ -1,0 +1,44 @@
+.platform-header > h4{
+    font-size: 20px;
+    margin-bottom: 10px !important;
+    font-weight: 300;
+    color: rgb(4, 218, 218);
+}
+.platform-header > h1{
+    font-size: 40px;
+    font-weight: 400;
+}
+.platform-header > h2{
+    color: rgb(4, 218, 218);
+
+    font-size: 35px;
+    font-weight: 400;
+}
+.platform-content{
+    margin-top: 20px;
+}
+.platform-content > p{
+    font-size: 18px;
+    color: gray;
+}
+.platform-btn{
+    margin-top: 20px;
+}
+.platform-btn > button{
+    border: 0px;
+    font-size: 18px;
+    background: none;
+    padding: 8px 20px;
+    border-bottom: 4px solid rgb(4, 218, 218);
+}
+.side-main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.side-main > img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
