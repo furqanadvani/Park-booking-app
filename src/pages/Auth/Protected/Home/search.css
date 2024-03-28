@@ -43,3 +43,7 @@
 .search-content {
     margin-bottom: 30px;
 }
+:where(.css-1xg9z9n).ant-picker-outlined{
+    width: 100%;
+    padding: 13px;
+}
