@@ -9,7 +9,7 @@ function AuthRoutes() {
       <Route index path='/' element={<Withoutlogin />} />
       <Route path='/loginUser' element={<Login />} />
       <Route path='/Sign-Up' element={<Signup />} />
-      {/* <Route path='*' element={<Navigate to='/loginUser' />} /> */}
+      <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   )
 }

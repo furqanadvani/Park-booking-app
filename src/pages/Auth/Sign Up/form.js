@@ -89,7 +89,7 @@ function SignupForm() {
   return (
 
 
-    <div className="form ">
+    <div className="form section-padding">
 
 <Formik>
 
@@ -105,10 +105,7 @@ function SignupForm() {
                         <div className="form-heading">
                             <h1>Heaven<span>.com</span></h1>
                         </div>
-                        <form>
-                          
-
-                        </form>
+                       
                         <div className="col-md-12">
                             <div className="row">
                                 <div className="fst-lst margin">
@@ -249,7 +246,7 @@ function SignupForm() {
                                               <h4>
                                                   <span className="signupScreen_gray">Already Have an Account? </span>
                                                   <span className="signupScreen_link"
-                                                      onClick={() => navigate("/Login")}
+                                                      onClick={() => navigate("/LoginUser")}
                                                   > Login Now. </span>  
                                                   {/* <span className="signupScreen_link" onClick={register}> Sign Up now. </span> */}
                                               </h4>

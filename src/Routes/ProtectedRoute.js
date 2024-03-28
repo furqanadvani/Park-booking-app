@@ -21,7 +21,7 @@ function ProtectedRoute() {
       <Route path="/detail/:cardId" element={<DetailsPages />} />
       <Route path='/updateBooking/:id/:parkId' element={<RescheduleBooking />} />
       <Route path='/updateProfile' element={<EditprofileForm />} />
-      {/* <Route path='*' element={<Navigate to='/home' />} /> */}
+      <Route path='*' element={<Navigate to='/searchpark' />} />
 
     </Routes>
 

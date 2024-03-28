@@ -10,10 +10,12 @@ import './search.css';
 import { datesreachSchema } from '../../../../Schema';
 import { selectSearchResult, setSearchResult } from '../../../../features/searchSlice';
 import HomePage from './home';
+import LoaderScreen from '../../../../Loader';
 
 function Searchs() {
   const dispatch = useDispatch();
   const [dataReceived, setDataReceived] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const searchResult = useSelector(selectSearchResult);
@@ -29,9 +31,9 @@ function Searchs() {
     validationSchema: datesreachSchema,
     onSubmit: (values) => {
       const formattedUTC = dayjs(`1970-01-01T${dayjs(values?.starttime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-      // setFieldValue('starttime', formattedUTC);
-      const formattedEndUTC = dayjs(`1970-01-01T${dayjs(values?.endtime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-      // console.log('endtime:', formattedEndUTC);
+      setFieldValue('starttime', formattedUTC);
+      const formattedEndUTC = dayjs(`1970-01-01T${dayjs(values.endtime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+      console.log('endtime:', formattedEndUTC);
       console.log(values, "formik values")
       check(values)
     }
@@ -47,6 +49,7 @@ function Searchs() {
 
   async function check(values) {
     try {
+      setLoading(true);
       const response = await axios.post('/availableparks', values, {
         headers: {
           "Content-Type": "application/json",
@@ -60,6 +63,9 @@ function Searchs() {
       setDataReceived(true);
     } catch (error) {
       console.error('Error during API call:', error);
+      alert(error.response?.data?.message)
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -77,9 +83,9 @@ function Searchs() {
           <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
             <ul class="navbar-nav  mb-2 mb-lg-0 gap-2 ">
               <li class="nav-item">
-                <Button onClick={() => navigate('/userProfile')}>
+                {/* <Button onClick={() => navigate('/userProfile')}>
                   Profile
-                </Button>
+                </Button> */}
               </li>
 
 
@@ -146,11 +152,11 @@ function Searchs() {
                           <TimePicker
                             className="form-control"
                             name="endtime"
-                            allowClear={false}
+                            // allowClear={false}
                             value={values.endtime ? dayjs(values.endtime) : null}
                             onChange={(val) => {
                               const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
-                              setFieldValue('endtime', formattedUTC);
+                                                                setFieldValue('endtime', formattedUTC);
                             }}
                             onBlur={() => setFieldTouched('endtime', true)}
                             placeholder="End Time"
@@ -178,6 +184,7 @@ function Searchs() {
 
         </div>
       </Formik>
+      {loading && <LoaderScreen />}
       {/* {dataReceived && <HomePage />} */}
     </>
   )

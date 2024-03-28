@@ -2,7 +2,7 @@ import { Flex, Spin } from 'antd'
 import React from 'react'
 import './Loader.css'
 
-function Loader() {
+function LoaderScreen() {
   return (
     <div id="loading-indicator">
     <div class="lds-hourglass"></div>
@@ -10,4 +10,4 @@ function Loader() {
   )
 }
 
-export default Loader
+export default LoaderScreen

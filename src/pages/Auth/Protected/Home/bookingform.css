@@ -14,9 +14,9 @@
     font-weight: 700;
     color: gray;
 }
-/* .park-booking-body{
-    background-color: rgb(4, 170, 154);
-} */
+.park-booking-body{
+    padding-block: 40px;
+}
 .park-booking-container{
     background-color: white;
 }

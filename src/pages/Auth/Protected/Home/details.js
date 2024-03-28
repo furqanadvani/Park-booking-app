@@ -3,7 +3,7 @@ import {  useNavigate, useParams } from 'react-router-dom';
 // import data from '../data.json';
 import './details.css'
 import { Col, Container, Row } from 'react-bootstrap';
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoPeople, IoTime } from "react-icons/io5";
 import FooterEnd from '../../Userwithoutlogin/footer';
 import { selectSearchResult } from '../../../../features/searchSlice';
 import { useSelector } from 'react-redux';
@@ -29,7 +29,13 @@ function DetailsPages() {
 
  
   const handleBooking = () => navigate(`/bookingform/${cardId}`);
+  const startTime = park?.parktiming?.starttime;
 
+  const formattedTime = startTime ? startTime.slice(11, 16) : ''; // Extracting time part (hh:mm)
+  console.log(formattedTime); 
+  const EndTime = park?.parktiming?.endtime;
+  const formattEnddTime = EndTime ? EndTime.slice(11, 16) : ''; // Extracting time part (hh:mm)
+  console.log(formattedTime); 
   return (
     <>
     <div>
@@ -111,9 +117,22 @@ function DetailsPages() {
                     <IoLocationSharp />
 
                   </i>
-                  <p className='m-0 p-0'>{park.city}, {park.country} </p>
+                  <p className='m-0 p-0'>{park.location},  {park.city}, {park.country}</p>
                 </div>
-              </div>
+                <div className='city-icon'>
+                  <i>
+                    <IoTime />
+                  </i>
+                  <p className='m-0 p-0'>Park Timing : {formattedTime} To {formattEnddTime} </p>
+                </div>
+             
+              <div className='city-icon'>
+                  <i>
+                    <IoPeople />
+                  </i>
+                  <p className='m-0 p-0'>Capacity: {park.capacity} </p>
+                </div>
+                </div>
               <div className='rating-items'>
 
                 <div className='box-rating'>
@@ -155,15 +174,10 @@ function DetailsPages() {
                 Description :
               </h5>
               <p>
-                The First Collection at Jumeirah Village Circle is located in the district of JVC. The 41-story high-rise hotel features 491 fully equipped guestrooms. The hotel is within a 20-minute drive from
-                Downtown Dubai and Dubai South, home to the Expo 2020 site.
-                Guests staying at this hotel are eligible to access Soluna Restaurants and Beach Club at The Palm including transportation.
-                The hotel includes an exclusive club lounge, a large swimming pool and sundeck, a fully equipped gymnasium, as well as separate male and female spa rooms.
-                Specialty restaurants at the hotel include Santè Ria with its menu inspired by flavors of South America. The Village Bistro is a family-friendly venue with an à la Carte menu and buffet selection.
+               {park.description}
               </p>
             </div>
-
-
+           
             </div>
 
           </Col>

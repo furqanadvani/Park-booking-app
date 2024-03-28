@@ -3,6 +3,8 @@ import userReducer from '../features/userSlice';
 import searchReducer from '../features/searchSlice';
 import parksReducer from '../features/parkSlice'
 import bookingsReducer from '../features/bookingSlice'
+import userProfileReducer from '../features/userprofileSlice';
+
 
 
 export const store = configureStore({
@@ -11,5 +13,6 @@ export const store = configureStore({
     search: searchReducer,
     parks: parksReducer,
     bookings: bookingsReducer,
+    userProfile: userProfileReducer,
   },
 });

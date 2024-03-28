@@ -7,9 +7,13 @@ import HeroSection from '../../Userwithoutlogin/hero-section';
 import { useSelector } from 'react-redux';
 import { selectSearchResult } from '../../../../features/searchSlice';
 import { Loader } from 'semantic-ui-react';
+import fetchData from '../../../../App'
 
 function HomePage() {
+  const HandleProfile = () => {
+    navigate('/userProfile')
 
+  } 
   const navigate = useNavigate();
 
 
@@ -32,7 +36,7 @@ function HomePage() {
     console.log(cardId)
   };
 
-  const HandleProfile = () => navigate('/userProfile')
+ 
 
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + '...' : string;

@@ -7,6 +7,7 @@ import axios from 'axios';
 import './Profile.css'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { message, Upload } from 'antd';
+import { selectUserProfile } from '../../../../features/userprofileSlice';
 
 
 

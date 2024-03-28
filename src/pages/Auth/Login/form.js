@@ -9,15 +9,17 @@ import { LoginSchema } from '../../../Schema';
 // import { selectUser } from '../../../features/userSlice';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../features/userSlice';
-import { fetchData } from '../../../utiltes/getfunctions';
-// import onLoginSuccess from '../../../App'
+import { login, logout, selectUser } from '../../../features/userSlice';
+import fetchData  from '../../../App';
+import LoaderScreen from '../../../Loader';
+import { Alert } from 'antd';
+
 
 function LoginForm() {
 
 
 
-    
+    const [loading, setLoading] = useState(false); 
 
 
     const initialValues = {
@@ -40,20 +42,23 @@ function LoginForm() {
 
     async function loginUser(values) {
         try {
+            setLoading(true); 
             let response = await axios.post('/user/login', values, {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
             });
-
+           
             if (response.status === 200) {
                 let responseData = response.data;
                 console.log(responseData)
                 localStorage.setItem('user-token', responseData.data.token);
                 // console.log(responseData.data.token)
                 dispatch(login(responseData));
-              navigate('/searchpark')
+                await fetchData();
+                console.log("fetchData called");
+                navigate('/searchpark')
   
                 
             } else {
@@ -61,15 +66,23 @@ function LoginForm() {
             }
         } catch (error) {
             console.error('Error during login:', error);
+            alert(error?.response?.data?.message)
         }
+    finally {
+        setLoading(false);      
+     }
     }
 
 
-
+   
 
 
 
     return (
+        <>
+        {loading ? ( 
+           <LoaderScreen/>
+        ) : (
         <div className="form-lgn">
             <Formik onSubmit={handleSubmit}>
                 <div className="container">
@@ -159,6 +172,9 @@ function LoginForm() {
                 </div>
             </Formik>
         </div>
+        )}
+        </>
+
     )
 }
 

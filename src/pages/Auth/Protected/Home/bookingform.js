@@ -64,6 +64,7 @@ function BookingForm() {
 
         } catch (error) {
             console.error('Error during API call:', error);
+            alert(error?.response?.data?.message)
         }
     }
 
@@ -100,7 +101,7 @@ function BookingForm() {
 
 
 
-            <div className='park-booking-body'>
+            <div className='park-booking-body section-psdding'>
 
                 <Container>
                     <div className='park-booking-container'>
