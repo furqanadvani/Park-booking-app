@@ -47,7 +47,7 @@
     width: 100%;
     padding: 13px;
 }
-.ant-picker .ant-picker-outlined .css-1xg9z9n .form-control{
-    padding: 13px;
-    width: 100%;
+:where(.css-1xg9z9n).ant-picker-outlined{
+    padding: 13px !important;
+    width: 100% !important;
 }
