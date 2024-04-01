@@ -77,6 +77,7 @@ function SignupForm() {
             }
         } catch (error) {
             console.error('Error during signup:', error);
+            alert(error?.response?.data?.message)
         }
     }
 

@@ -16,6 +16,7 @@ function Searchs() {
   const dispatch = useDispatch();
   const [dataReceived, setDataReceived] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const searchResult = useSelector(selectSearchResult);
@@ -26,7 +27,7 @@ function Searchs() {
     date: ""
   };
 
-  const { values, errors, touched, handleSubmit, setFieldValue, setFieldTouched } = useFormik({
+  const { values, errors, touched, handleSubmit, setFieldValue, handleChange, setFieldTouched } = useFormik({
     initialValues: initialValues,
     validationSchema: datesreachSchema,
     onSubmit: (values) => {
@@ -127,6 +128,20 @@ function Searchs() {
                       </Col>
                       <Col md={3} sm={12}>
                         <div className="form-group">
+                          {/* <TimePicker
+                            open={open}
+                            onOpenChange={setOpen}
+                            name="starttime"
+                            allowClear={false}
+                            value={values.starttime}
+                            onChange={handleChange}
+                            onBlur={() => setFieldTouched('starttime', true)}
+                            renderExtraFooter={() => (
+                              <Button size="small" type="primary" onClick={() => setOpen(false)}>
+                                OK
+                              </Button>
+                            )}
+                          /> */}
                           <TimePicker
                             className="form-control"
                             name="starttime"
@@ -152,11 +167,11 @@ function Searchs() {
                           <TimePicker
                             className="form-control"
                             name="endtime"
-                            // allowClear={false}
+                            allowClear={false}
                             value={values.endtime ? dayjs(values.endtime) : null}
                             onChange={(val) => {
                               const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
-                                                                setFieldValue('endtime', formattedUTC);
+                              setFieldValue('endtime', formattedUTC);
                             }}
                             onBlur={() => setFieldTouched('endtime', true)}
                             placeholder="End Time"

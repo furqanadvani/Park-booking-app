@@ -38,6 +38,7 @@ const Navigate = useNavigate()
 
             const apiRes = api.data ;
             console.log(apiRes)
+            alert(apiRes?.data?.message)
             Navigate('/userProfile')
         }catch(error){
             console.log(error);
