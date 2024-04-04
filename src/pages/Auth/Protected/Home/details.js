@@ -3,7 +3,7 @@ import {  useNavigate, useParams } from 'react-router-dom';
 // import data from '../data.json';
 import './details.css'
 import { Col, Container, Row } from 'react-bootstrap';
-import { IoLocationSharp, IoPeople, IoTime } from "react-icons/io5";
+import { IoBasketball, IoLocationSharp, IoPeople, IoTennisball, IoTime, IoWalk, IoWater, IoWifi } from "react-icons/io5";
 import FooterEnd from '../../Userwithoutlogin/footer';
 import { selectSearchResult } from '../../../../features/searchSlice';
 import { useSelector } from 'react-redux';
@@ -39,23 +39,23 @@ function DetailsPages() {
   return (
     <>
     <div>
-      <div className='details-header'>
-        <Container>
-          <Row>
-            <Col sm={12} md={12}>
-              <div className='details-header-main'>
-                <div className='logo-details'>
-                  <h1 onClick={backTohome}>
-                    Heaven<span>
-                      .com
-                    </span>
-                  </h1>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+    <nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand fs-1 text bold nav-logo" href="#" onClick={() => navigate('/home')}>Heaven<spam className='navlogo-span'>.com</spam></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
+      <ul class="navbar-nav  mb-2 mb-lg-0 gap-2 ">
+      
+      
+        
+       
+      </ul>
+      
+    </div>
+  </div>
+</nav>
 
 
       <Container>
@@ -179,8 +179,57 @@ function DetailsPages() {
             </div>
            
             </div>
-
+            
           </Col>
+          <div className='facilities'>
+            <Col md={8} sm={12}>
+              <Col md={12} sm={12}>
+                  <div className='facilities-heading'>
+                      <h4>
+                      Most popular facilities :
+                      </h4>
+                  </div>
+                </Col>
+                <Col md={12} sm={12}>
+                  <div className='facilities-body'>
+                    <Row>
+
+                    <Col md={2}>
+                      <div className='fac-icon-name'>
+                      <i><IoWifi /></i>
+                    <p>Free wifi</p>
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className='fac-icon-name'>
+                      <i><IoTennisball /></i>
+                    <p>Tennisball Ground</p>
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className='fac-icon-name'>
+                      <i><IoWalk /></i>
+                    <p>Walking Area</p>
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className='fac-icon-name'>
+                      <i><IoBasketball /></i>
+                    <p>Baskitball Ground</p>
+                      </div>
+                    </Col>
+                    <Col md={3}>
+                      <div className='fac-icon-name mar-ic'>
+                      <i><IoPeople /></i>
+                    <p>Family Park</p>
+                      </div>
+                    </Col>
+                    </Row>
+
+                  </div>
+                </Col>
+            </Col>
+          </div>
         </div>
       </Container>
 

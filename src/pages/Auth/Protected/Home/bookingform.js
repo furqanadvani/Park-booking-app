@@ -9,6 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import parkfromimg from '../../../../Assets/pool6.png'
 import './bookingform.css'
+import { toast } from 'react-toastify';
 
 function BookingForm() {
 
@@ -59,7 +60,7 @@ function BookingForm() {
             });
 
             const apiRes = response.data;
-
+            toast(apiRes?.message)
             navigate('/home')
 
         } catch (error) {
@@ -80,24 +81,23 @@ function BookingForm() {
 
     return (
         <>
-            <div className='home-header'>
-                <Container>
-                    <Row>
-                        <Col md={12} sm={12} lg={12}>
-                            <div className='home-header-main'>
-                                <div className='home-logo'>
-                                    <h1>
-                                        Heaven<span>.com</span>
-                                    </h1>
-                                </div>
-                                <div className='home-header-links'>
-                                    <button>Hotel</button>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+          <nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand fs-1 text bold nav-logo" href="#" onClick={() => navigate('/home')}>Heaven<spam className='navlogo-span'>.com</spam></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
+      <ul class="navbar-nav  mb-2 mb-lg-0 gap-2 ">
+      
+      
+        
+       
+      </ul>
+      
+    </div>
+  </div>
+</nav>
 
 
 

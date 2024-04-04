@@ -7,6 +7,7 @@ import { SignUpSchema } from '../../../Schema'
 import axios from 'axios'
 import { login } from '../../../features/userSlice'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 
 
@@ -67,17 +68,17 @@ function SignupForm() {
                 const token = responseData.data.token;
                 localStorage.setItem("user-token", token);
                 console.log(token);
-                alert(response.data.message)
+                toast(response.data.message)
                 dispatch(login(responseData)); 
                 navigate('/searchpark');
                
             } else {
-                alert('Signup failed:', response.statusText );
-                alert(response?.message)
+                // alert('Signup failed:', response.statusText );
+                toast.error(response?.message)
             }
         } catch (error) {
             console.error('Error during signup:', error);
-            alert(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message)
         }
     }
 

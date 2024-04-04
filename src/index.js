@@ -8,6 +8,7 @@ import './index.css';
 import { interceptor } from './intersp';
 import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter as  Router } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 interceptor();
 
@@ -19,6 +20,7 @@ root.render(
     <Provider store={store}>
       <Router>
       <App />
+      <ToastContainer />
       </Router>
     </Provider>
   </React.StrictMode>

@@ -71,11 +71,18 @@ svg:not(:root){
   height: 20px;
   color: rgb(0, 186, 186);
 }
+.box-desc{
+  height: 74px;
+}
 .img-box{
   background-color: black;
 }
 .intro-desc{
   margin-top: 20px;
+  
+}
+.intro-desc > p{
+  font-size: 17px;
 }
 /* slider */
 
@@ -100,4 +107,29 @@ svg:not(:root){
   border:  none;
   background-color: rgb(4, 161, 161);
   font-size: 15px;
+}
+.fac-icon-name{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}
+.fac-icon-name > p{
+  font-size: 14px;
+}
+svg:not(:root){
+  width: 25px;
+  height: 25px;
+}
+.facilities-body{
+  margin-top: 20px;
+}
+.mar-ic{
+  margin-top: 8px;
+}
+.facilities{
+  margin-top: 20px;
+}
+.facilities-heading > h4 {
+  font-size: 22px;
 }

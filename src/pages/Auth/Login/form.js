@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { login, logout, selectUser } from '../../../features/userSlice';
 import fetchData  from '../../../App';
 import LoaderScreen from '../../../Loader';
-import { Alert } from 'antd';
+import { Bounce, toast } from 'react-toastify';
 
 
 function LoginForm() {
@@ -43,32 +43,44 @@ function LoginForm() {
     async function loginUser(values) {
         try {
             setLoading(true); 
-            let response = await axios.post('/user/login', values, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-            });
+            let response = await axios.post('/user/login', values);
            
             if (response.status === 200) {
                 let responseData = response.data;
                 console.log(responseData)
+                toast(responseData?.message ,{
+                    position: "top-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    // pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    })
                 localStorage.setItem('user-token', responseData.data.token);
-                // console.log(responseData.data.token)
                 dispatch(login(responseData));
                 await fetchData();
                 console.log("fetchData called");
                 navigate('/searchpark')
-  
-                
             } else {
                 console.error('Login failed:', response.statusText);
             }
         } catch (error) {
             console.error('Error during login:', error);
-            alert(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message ,{
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                })
         }
-    finally {
+        finally {
         setLoading(false);      
      }
     }

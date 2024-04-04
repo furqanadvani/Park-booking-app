@@ -25,8 +25,8 @@ export const subscriptionSchema = Yup.object({
 
 
 export const datesreachSchema = Yup.object({
-    starttime : Yup.string().required("please enter a park starting time..."),
-    endtime : Yup.string().required("please enter a park ending time..."),
+    starttime: Yup.string().nullable(),
+  endtime: Yup.string().nullable(),
     date : Yup.string().required("please enter a date..."),
 })
 
@@ -47,4 +47,8 @@ export const updateFormSchema = Yup.object({
     firstname : Yup.string().required("Please Enter Your Firstname.."),
     lastname : Yup.string().required("Please Enter Your LastName.."),
     phonenumber : Yup.string().required("Please Enter Your Phone Number"),
+})  
+
+export const AvatarScehma = Yup.object({
+    avatar : Yup.array().required('Image are required').default([]),
 })

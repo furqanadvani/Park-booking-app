@@ -9,14 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import './search.css';
 import { datesreachSchema } from '../../../../Schema';
 import { selectSearchResult, setSearchResult } from '../../../../features/searchSlice';
-import HomePage from './home';
 import LoaderScreen from '../../../../Loader';
 
 function Searchs() {
   const dispatch = useDispatch();
   const [dataReceived, setDataReceived] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [showTimeInputs, setShowTimeInputs] = useState(false);
 
   const navigate = useNavigate();
   const searchResult = useSelector(selectSearchResult);
@@ -31,16 +30,31 @@ function Searchs() {
     initialValues: initialValues,
     validationSchema: datesreachSchema,
     onSubmit: (values) => {
-      const formattedUTC = dayjs(`1970-01-01T${dayjs(values?.starttime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-      setFieldValue('starttime', formattedUTC);
-      const formattedEndUTC = dayjs(`1970-01-01T${dayjs(values.endtime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-      console.log('endtime:', formattedEndUTC);
-      console.log(values, "formik values")
+      const hasStartTime = !!values.starttime;
+      const hasEndTime = !!values.endtime;
+
+      // Check if either starttime or endtime is provided
+      if (hasStartTime || hasEndTime) {
+        const formattedUTC = dayjs(`1970-01-01T${dayjs(values?.starttime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+        setFieldValue('starttime', formattedUTC);
+        const formattedEndUTC = dayjs(`1970-01-01T${dayjs(values.endtime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+        console.log('endtime:', formattedEndUTC);
+        console.log(values, "formik values");
+        check(values);
+      } else {
+        console.log('Please provide either starttime or endtime');
+        // Handle the case when neither starttime nor endtime is provided
+      }
+      // const formattedUTC = dayjs(`1970-01-01T${dayjs(values?.starttime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+      // setFieldValue('starttime', formattedUTC);
+      // const formattedEndUTC = dayjs(`1970-01-01T${dayjs(values.endtime).toISOString().split('T')[1]}`).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+      // console.log('endtime:', formattedEndUTC);
+      // console.log(values, "formik values")
       check(values)
     }
   });
 
-  function onChange(date, val) {
+  function onChange(date) {
     if (date) {
       const formattedDate = dayjs(date).startOf('day').toISOString();
       const formattedDateWithTime = formattedDate.replace(/T\d{2}:\d{2}:\d{2}\.\d{3}Z$/, 'T00:00:00');
@@ -84,9 +98,9 @@ function Searchs() {
           <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
             <ul class="navbar-nav  mb-2 mb-lg-0 gap-2 ">
               <li class="nav-item">
-                {/* <Button onClick={() => navigate('/userProfile')}>
+                <Button onClick={() => navigate('/userProfile')}>
                   Profile
-                </Button> */}
+                </Button>
               </li>
 
 
@@ -103,14 +117,12 @@ function Searchs() {
             <div className='search-content'>
               <h1 className='m-0 p-0'>EventEase is your go-to solution for finding and booking venues for any occasion.</h1>
             </div>
-            <div className='search-form'>
+              <Row className='d-flex justify-content-center align-content-center'>
 
-              <Row>
+              <Col md={6} sm={12}>
+            <div className='search-form-main'>
                 <Col md={12} sm={12}>
-                  <Col md={12} sm={12}>
-                    <Row>
-                      <Col md={4}>
-                        <div className="form-group">
+                <div className="form-group ">
                           <DatePicker
                             name='date'
                             allowClear={false}
@@ -125,76 +137,79 @@ function Searchs() {
                             </p>
                           ) : null}
                         </div>
-                      </Col>
-                      <Col md={3} sm={12}>
-                        <div className="form-group">
-                          {/* <TimePicker
-                            open={open}
-                            onOpenChange={setOpen}
-                            name="starttime"
-                            allowClear={false}
-                            value={values.starttime}
-                            onChange={handleChange}
-                            onBlur={() => setFieldTouched('starttime', true)}
-                            renderExtraFooter={() => (
-                              <Button size="small" type="primary" onClick={() => setOpen(false)}>
-                                OK
-                              </Button>
-                            )}
-                          /> */}
-                          <TimePicker
-                            className="form-control"
-                            name="starttime"
-                            allowClear={false}
-                            value={values.starttime ? dayjs(values.starttime) : null}
-                            onChange={(val) => {
-                              const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
-                              setFieldValue('starttime', formattedUTC);
-                            }}
-                            onBlur={() => setFieldTouched('starttime', true)}
-                            placeholder="Start Time"
-                          />
-                          {errors.starttime && touched.starttime ? (
-                            <p className="p_msg">
-                              {errors.starttime}
-                            </p>
-                          ) : null}
-                        </div>
-                      </Col>
+                </Col>
+                {showTimeInputs && (
+                        <>
+                        <Row className='date-mb'>
+                          <Col md={6} sm={12}>
+                            <div className="form-group date-mb">
+                              <TimePicker
+                                className="form-control"
+                                name="starttime"
+                                use12Hours={true}
+                                allowClear={false}
+                                value={values.starttime ? dayjs(values.starttime) : null}
+                                onChange={(val) => {
+                                  const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
+                                  setFieldValue('starttime', formattedUTC);
+                                }}
+                                onBlur={() => setFieldTouched('starttime', true)}
+                                placeholder="Start Time"
+                              />
+                              {errors.starttime && touched.starttime ? (
+                                <p className="p_msg">
+                                  {errors.starttime}
+                                </p>
+                              ) : null}
+                            </div>
+                          </Col>
+                          <Col md={6} sm={12}>
+                            <div className="form-group date-mb">
+                              <TimePicker
+                                className="form-control"
+                                name="endtime"
+                                allowClear={false}
+                                use12Hours={true}
+                                value={values.endtime ? dayjs(values.endtime) : null}
+                                onChange={(val) => {
+                                  const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
+                                  setFieldValue('endtime', formattedUTC);
+                                }}
+                                onBlur={() => setFieldTouched('endtime', true)}
+                                placeholder="End Time"
+                              />
+                              {errors.endtime && touched.endtime ? (
+                                <p className="p_msg">
+                                  {errors.endtime}
+                                </p>
+                              ) : null}
+                            </div>
+                          </Col>
+                        </Row>
 
-                      <Col md={3} sm={12}>
-                        <div className="form-group">
-                          <TimePicker
-                            className="form-control"
-                            name="endtime"
-                            allowClear={false}
-                            value={values.endtime ? dayjs(values.endtime) : null}
-                            onChange={(val) => {
-                              const formattedUTC = dayjs(`1970-01-01T${dayjs(val).toISOString().split('T')[1]}`).toISOString();
-                              setFieldValue('endtime', formattedUTC);
-                            }}
-                            onBlur={() => setFieldTouched('endtime', true)}
-                            placeholder="End Time"
-                          />
-                          {errors.endtime && touched.endtime ? (
-                            <p className="p_msg">
-                              {errors.endtime}
-                            </p>
-                          ) : null}
-
-                        </div>
-                      </Col>
-                      <Col md={2}>
+                        </>
+                      )}
+                        <Col md={12}>
                         <Button className='search-btn' type='submit' onClick={handleSubmit} >
                           Search Park
                         </Button>
                       </Col>
-                    </Row>
-                  </Col>
-
+                      <Col md={12}>
+                  <div className="form-group show-time">
+                    <label >Search with Time</label>
+                    <input
+                      type="checkbox"
+                      id="showTime"
+                      checked={showTimeInputs}
+                      onChange={() => setShowTimeInputs(!showTimeInputs)}
+                    />
+                  </div>
                 </Col>
-              </Row>
             </div>
+              </Col>
+              </Row>
+
+           
           </Container>
 
         </div>

@@ -1,0 +1,8 @@
+.link > h4 > span{
+    font-size: 14px;
+}
+.link{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
